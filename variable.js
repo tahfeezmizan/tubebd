@@ -1,35 +1,35 @@
-// //var variable value changeable.
-// var egg = 40;
-// egg = 50;
+//var variable value changeable.
+var egg = 40;
+egg = 50;
 
-// // console.log(egg);
+console.log(egg);
 
-// let pomegranate = 25;
-//     pomegranate -= 10; // shorthand substraction
-// //  console.log(pomegranate);
-
-
-// let  tomatoPrice = 20;
-//      tomatoPrice *= 30; // shorthand Multifunction
-// //  console.log(tomatoPrice);
+let pomegranate = 25;
+    pomegranate -= 10; // shorthand substraction
+ console.log(pomegranate);
 
 
-//  // division  shorthand
-// let grape = 200;
-//     grape /= 5; 
-// //  console.log(grape);
+let  tomatoPrice = 20;
+     tomatoPrice *= 30; // shorthand Multifunction
+ console.log(tomatoPrice);
 
 
-// // shorthand +=
-// let price1 = 50;
-// let price2 = 30;
+ // division  shorthand
+let grape = 200;
+    grape /= 5; 
+ console.log(grape);
 
-// price1++;
 
-// const potato = 30;
-// // ++ adding 1 not existing to const
-// // potato++
+// shorthand +=
+let price1 = 50;
+let price2 = 30;
 
-// // console.log(potato);
+price1++;
+
+const potato = 30;
+// ++ adding 1 not existing to const
+// potato++
+
+// console.log(potato);
 
 
