@@ -68,7 +68,7 @@
                         <li><a href="" class="text-lg">Blog</a></li>
                     </ul>
                 </div>
-                <a class="w-full lg:w-48 cursor-pointer ml-4 lg:ml-0"><img src="images/logo.png" alt=""></a>
+                <a class="w-40 lg:w-48 cursor-pointer ml-4 lg:ml-0"><img src="images/logo.png" alt=""></a>
             </div>
             <div class="navbar-end hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
@@ -217,7 +217,6 @@
                         <button
                             class="btn text-base text-white rounded-3xl px-7 mb-8 font-normal bg-[#21b573] hover:bg-[#1a8d59] ">All
                             Courses</button>
-
                     </a>
                 </div>
             </div>
@@ -226,24 +225,65 @@
 
         <!-- client Testimonial section  -->
         <section class="py-12">
-            <div class="w-full px-4 md:px-0 md:w-8/12 mx-auto">
+            <div class="w-full px-4 lg:px-0 md:w-8/12 mx-auto">
                 <h2 class="text-4xl text-center font-bold mb-10">Testimonial</h2>
 
-                <div  class="grid gap-0 md:gap-10 xl:gap-16 p-8 rounded-xl grid-cols-1 xl:grid-cols-2 justify-center items-center">
-                    <div class="image flex justify-end">
-                        <img src="images/clients.png" class="max-w-[30%] text-end" alt="">
+                <div  class="grid gap-10 md:gap-10 lg:gap-16 rounded-xl grid-cols-1 lg:grid-cols-12 justify-center items-center">
+                    <div class="col-span-12 lg:col-span-4 flex justify-center lg:justify-end ">
+                        <img src="images/clients.png" class="w-[40%] lg:w-[60%] text-end" alt="">
                     </div>
-                    <div class=" ">
-                        <p class="text-base font-normal">There are many variations of passages of Lorem Ipsum available, but the
-                            majority have suffered alteration in some form, by injected humour, 
-                           or randomised words which don't look even slightly believable.</p>
+                    <div class="col-span-12 lg:col-span-7">
+                        <p class="text-base text-center lg:text-left font-normal text-black">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer>
 
+
+
+    <!-- footer content section  -->
+    <footer class="footer py-20 bg-[#282531] text-base-content">
+        <div class="w-full px-4 md:px-0 lg:w-8/12 mx-auto">
+            <div class="text-white grid grid-cols-2 xl:grid-cols-12 gap-16 mb-2">
+                <div class=" col-span-2 lg:col-span-4 xl:col-span-5 xl:text-start">
+                    <a class="cursor-pointer ml-4 lg:ml-0"><img src="images/logo.png" class="w-48 lg:w-52 mx-auto xl:mx-0" alt=""></a>
+                    <p class="font-normal text-center xl:text-left leading-7 text-base mt-8">Millions of people of all ages and from around <br>the world are improving their lives with us</p>
+                </div>
+
+                <div class="col-span-1 xl:col-span-2 text-center xl:text-start">
+                    <nav class="flex flex-col">
+                        <header class="text-white text-lg font-bold mb-5">Course</header>
+                        <a class="link text-base font-normal leading-8 link-hover">Web Design</a>
+                        <a class="link text-base font-normal leading-8 link-hover">Business</a>
+                        <a class="link text-base font-normal leading-8 link-hover">Graphic Design</a>
+                        <a class="link text-base font-normal leading link-hover">Engineering</a>
+                    </nav>
+                </div>
+                <div class="col-span-1 xl:col-span-2 text-center xl:text-start">
+                    <nav class="flex flex-col">
+                        <header class="text-white text-lg font-bold mb-5">Terms</header>
+                        <a class="link text-base font-normal leading-8 link-hover">Web Design</a>
+                        <a class="link text-base font-normal leading-8 link-hover">Business</a>
+                        <a class="link text-base font-normal leading-8 link-hover">Graphic Design</a>
+                        <a class="link text-base font-normal leading link-hover">Engineering</a>
+                    </nav>
+                </div>
+                <div class="col-span-2 xl:col-span-2 text-center xl:text-start">
+                    <nav class="flex flex-col">
+                        <header class="text-white text-lg font-bold mb-5">Useful Link</header>
+                        <a class="link text-base font-normal leading-8 link-hover">Privacy policy</a>
+                        <a class="link text-base font-normal leading-8 link-hover">Cookie policy</a>
+                        <a class="link text-base font-normal leading-8 link-hover">Terms of use</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="copy-right text-white text-center">
+                <p class="text-base font-normal text-center leading-8">Copyright © 2024 21daysofcode.com</p>
+            </div>
+        </div>
+        
     </footer>
 </body>
 
