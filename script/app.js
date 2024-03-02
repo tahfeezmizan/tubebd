@@ -1,8 +1,8 @@
 const btnContainer = document.getElementById('btn-container');
 const cardContainer = document.getElementById('card-container');
+const errorElement = document.getElementById('error-element');
 
 let selectedCategory = 1000;
-
 
 const fetchCategories = () => {
     const url = 'https://openapi.programming-hero.com/api/videos/categories';
@@ -25,21 +25,27 @@ const fetchDataByCategories = (categoryID) => {
     selectedCategory = categoryID;
     const url = `https://openapi.programming-hero.com/api/videos/category/${categoryID}`;
     fetch(url)
-    .then((res) => res.json())
-    .then(({data}) => {
-        // card container empty before running loop
-        cardContainer.innerHTML = '';
-
-        data.forEach((video) => {
-            console.log(video)
-
-            let verifiedBadge= '';
-            if(video.authors[0].verified){
-                verifiedBadge = `<img src="../image/verified badge.svg" alt="">`
+        .then((res) => res.json())
+        .then(({ data }) => {
+            if (data.length === 0) {
+                errorElement.classList.remove('hidden')
             }
+            else {
+                errorElement.classList.add('hidden')
+            }
+            // card container empty before running loop
+            cardContainer.innerHTML = '';
 
-            const newCard = document.createElement('div');
-            newCard.innerHTML = `
+            data.forEach((video) => {
+                console.log(video)
+
+                let verifiedBadge = '';
+                if (video.authors[0].verified) {
+                    verifiedBadge = `<img src="../image/verified badge.svg" alt="">`
+                }
+
+                const newCard = document.createElement('div');
+                newCard.innerHTML = `
             <div class="card card-compact w-96 bg-base-100 shadow-xl">
                 <figure><img class="w-full mb-5" src="${video.thumbnail}" />
                 </figure>
@@ -62,9 +68,9 @@ const fetchDataByCategories = (categoryID) => {
             </div>
             `
 
-            cardContainer.appendChild(newCard)
+                cardContainer.appendChild(newCard)
+            })
         })
-    })
 }
 
 fetchCategories()
