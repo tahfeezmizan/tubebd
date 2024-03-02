@@ -1,4 +1,8 @@
 const btnContainer = document.getElementById('btn-container');
+const cardContainer = document.getElementById('card-container');
+
+let selectedCategory = 1000;
+
 
 const fetchCategories = () => {
     const url = 'https://openapi.programming-hero.com/api/videos/categories';
@@ -18,30 +22,40 @@ const fetchCategories = () => {
 }
 
 const fetchDataByCategories = (categoryID) => {
+    selectedCategory = categoryID;
     const url = `https://openapi.programming-hero.com/api/videos/category/${categoryID}`;
     fetch(url)
     .then((res) => res.json())
     .then(({data}) => {
-        const cardContainer = document.getElementById('card-container');
-        console.log(data)
-        console.log({data}.thumbnail)
+        // card container empty before running loop
+        cardContainer.innerHTML = '';
 
         data.forEach((video) => {
+            console.log(video)
+
+            let verifiedBadge= '';
+            if(video.authors[0].verified){
+                verifiedBadge = `<img src="../image/verified badge.svg" alt="">`
+            }
+
             const newCard = document.createElement('div');
             newCard.innerHTML = `
             <div class="card card-compact w-96 bg-base-100 shadow-xl">
-                <figure><img src="" />
+                <figure><img class="w-full mb-5" src="${video.thumbnail}" />
                 </figure>
                 <div class="card-body">
                     <div id="" class="flex gap-8">
                         <div>
                             <img class="w-12 h-12 rounded-full"
-                                src="" alt="">
+                                src="${video.authors[0].profile_picture}" alt="">
                         </div>
                         <div class="">
-                            <h2 class="font-bold text-base pb-2">Video title</h2>
-                            <h4 class="text-sm pb-2">Author Name <span class="verified-Budget"></span></h4>
-                            <p class="text-sm pb-2">91k views</p>
+                            <h2 class="font-bold text-base pb-2">${video.title}</h2>
+                            <div class="flex gap-5">
+                            <h4 class="text-sm pb-2">${video.authors[0].profile_name}</h4>
+                            ${verifiedBadge}
+                            </div>
+                            <p class="text-sm pb-2">${video.others.views}</p>
                         </div>
                     </div>
                 </div>
@@ -54,3 +68,5 @@ const fetchDataByCategories = (categoryID) => {
 }
 
 fetchCategories()
+
+fetchDataByCategories(selectedCategory)
