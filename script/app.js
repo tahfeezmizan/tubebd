@@ -1,8 +1,15 @@
 const btnContainer = document.getElementById('btn-container');
 const cardContainer = document.getElementById('card-container');
 const errorElement = document.getElementById('error-element');
+const sortBtn = document.getElementById('sort-btn');
 
 let selectedCategory = 1000;
+let sortbyView = false;
+
+sortBtn.addEventListener('click', () => {
+    sortbyView = true;
+    fetchDataByCategories(selectedCategory, sortbyView)
+});
 
 const fetchCategories = () => {
     const url = 'https://openapi.programming-hero.com/api/videos/categories';
@@ -13,32 +20,53 @@ const fetchCategories = () => {
             console.log(data)
             data.forEach((card) => {
                 const newBtn = document.createElement('button');
-                newBtn.className = 'btn btn-ghost bg-slate-600 text-white text-lg px-5'
+                newBtn.className = 'btn category-btn btn-ghost bg-slate-600 text-white text-lg px-5'
                 newBtn.innerHTML = card.category
-                newBtn.addEventListener('click', () => fetchDataByCategories(card.category_id))
+                newBtn.addEventListener('click', () => {
+                    fetchDataByCategories(card.category_id)
+                    const allBtns = document.querySelectorAll('.category-btn');
+                    for (const btn of allBtns) {
+                        btn.classList.remove('bg-red-600')
+                    }
+                    newBtn.classList.add('bg-red-600')
+                })
+
                 btnContainer.appendChild(newBtn)
             })
         })
 }
 
-const fetchDataByCategories = (categoryID) => {
+const fetchDataByCategories = (categoryID, sortbyView) => {
     selectedCategory = categoryID;
     const url = `https://openapi.programming-hero.com/api/videos/category/${categoryID}`;
     fetch(url)
         .then((res) => res.json())
         .then(({ data }) => {
+
+            if (sortbyView) {
+                data.sort((a, b) => {
+                    const totalViewStrFirst = a.others?.views;
+                    const totalViewStrSecond = b.others?.views;
+
+                    const totalViewFirstNumber = parseFloat(totalViewStrFirst.replace("K", '')) || 0;
+                    const totalViewSecondNumber = parseFloat(totalViewStrSecond.replace("K", '')) || 0;
+
+                    return totalViewSecondNumber - totalViewFirstNumber;
+                })
+            }
+
             if (data.length === 0) {
                 errorElement.classList.remove('hidden')
             }
             else {
                 errorElement.classList.add('hidden')
+
             }
+
             // card container empty before running loop
             cardContainer.innerHTML = '';
 
             data.forEach((video) => {
-                console.log(video)
-
                 let verifiedBadge = '';
                 if (video.authors[0].verified) {
                     verifiedBadge = `<img src="../image/verified badge.svg" alt="">`
@@ -67,12 +95,10 @@ const fetchDataByCategories = (categoryID) => {
                 </div>
             </div>
             `
-
                 cardContainer.appendChild(newCard)
             })
         })
 }
 
 fetchCategories()
-
-fetchDataByCategories(selectedCategory)
+fetchDataByCategories(selectedCategory, sortbyView)
